@@ -1,0 +1,463 @@
+
+/* Genel stil ayarları */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    padding: 30px;
+}
+
+button {
+    font-size: 13px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.table-container {
+    position: relative;
+    left: 20px;
+    right: 20px;
+    overflow-x: close; /* yatay kaydırma kapalı*/
+}
+
+table {
+    width: 100%; /* Tablo genişliği kapsayıcıya göre ayarlanır */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    position: relative;
+    left: 20px;
+    right: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    word-break: break-word; /* İçeriğin taşmasını önler */
+}
+
+th {
+    background-color: #f4f4f4;
+    word-break: break-word; /* Kelimelerin satır sonlarına taşmasını sağlar */
+    word-wrap: break-word; /* Kelimeleri taşırsa kırar */
+
+    overflow: hidden; /* Taşan kısmı gizler */
+    text-overflow: ellipsis; /* Taşan kısmı "..." ile gösterir */
+    text-align: center; /* Metni ortalar */
+    padding: 8px; /* İç boşluk */
+}
+
+td {
+    white-space: nowrap; /* Tek satırda kalmasını sağlar */
+    overflow: hidden; /* Taşan kısmı gizler */
+    text-overflow: ellipsis; /* Taşan kısmı "..." ile gösterir */
+}
+tfoot td {
+    text-align: center;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.form-container form {
+    margin: 0;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.form-container button {
+    font-size: 13px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.editable {
+    border: 1px solid #ddd;
+    padding: 5px;
+    min-height: 30px; /* İçeriğin hizalanmasını sağlar */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons button {
+    font-size: 13px;
+    padding: 10px 20px;
+    background-color: rgb(181, 187, 187);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Yazının tek satırda kalmasını sağlar */
+    height: auto;
+}
+
+.action-buttons button:hover {
+    background-color: rgb(66, 70, 70);
+}
+
+button:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    .table-container {
+        left: 10px;
+        right: 10px;
+        top: 70px;
+    }
+    table {
+        font-size: 12px;
+    }
+    th, td {
+        font-size: 10px;
+        padding: 4px;
+    }
+
+    
+}
+
+#veriTableContainer {
+    padding: 20px; /* Sayfa kenarlarına boşluk bırakır */
+    box-sizing: border-box; /* Padding'i kutunun boyutuna dahil eder */
+    margin: 0 auto; /* Sayfanın ortasında hizalar */
+    max-width: calc(100% - 2cm); /* Tablo genişliğini sınırlamaz ve sağdan 2cm, soldan 2cm boşluk bırakır */
+    margin-left: 0cm; /* Sol taraftan 2cm boşluk bırakır */
+}
+
+
+/* Tablo genişliği ve diğer stil ayarları */
+#myVeriTable {
+    width: 100%; /* Tablo genişliğini kapsayıcıya göre ayarlar */
+    border-collapse: collapse; /* Hücre sınırlarının birleşmesini sağlar */
+    transform-origin: top left; /* Küçültme işlemini sol üst köşeden başlatır */
+}
+#myVeriTable th {
+    font-size: 10px; /* Başlık font boyutunu küçültür */
+    word-break: break-word; /* Kelimeleri kırar, taşmasını önler */
+    overflow-wrap: break-word; /* Metin taşmasını önler */
+    padding: 8px; /* Başlık hücresinin iç boşluğunu ayarlar */
+    vertical-align: middle; /* Başlık hücrelerini de ortalar */
+   
+    text-align: center;
+}
+
+#myVeriTable th, #myVeriTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word; /* Kelimelerin taşmasını önler */
+    overflow: hidden; /* Taşan kısmı gizler */
+    text-overflow: ellipsis; /* Taşan kısmı "..." ile gösterir */
+}
+
+/* Karanlık başlıklar için özel stil */
+.thead-dark th {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+/* Tablo kenarlıkları */
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+/* Buton için özel stil */
+.button-80 {
+    background: #fff;
+    backface-visibility: hidden;
+    border-radius: .375rem;
+    border-style: solid;
+    border-width: .125rem;
+    box-sizing: border-box;
+    color: #212121;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular, Helvetica, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    padding: .875rem 1.125rem;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-80:not(:disabled):hover {
+    transform: scale(1.05);
+}
+
+.button-80:not(:disabled):hover:active {
+    transform: scale(1.05) translateY(.125rem);
+}
+
+.button-80:focus {
+    outline: 0 solid transparent;
+}
+
+.button-80:focus:before {
+    content: "";
+    left: calc(-1*.375rem);
+    pointer-events: none;
+    position: absolute;
+    top: calc(-1*.375rem);
+    transition: border-radius;
+    user-select: none;
+}
+
+.button-80:focus:not(:focus-visible) {
+    outline: 0 solid transparent;
+}
+
+.button-80:focus:not(:focus-visible):before {
+    border-width: 0;
+}
+
+.button-80:not(:disabled):active {
+    transform: translateY(.125rem);
+}
+
+/* Koyu renk butonlar için özel stil */
+.button-dark {
+    color: #ffffff;
+    background-color: #343a40;
+    border-color: #343a40;
+}
+
+.button-dark:hover {
+    color: #ffffff;
+    background-color: #23272b;
+    border-color: #1d2124;
+}
+
+/* Navbar stili */
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Üstte kalmasını sağlamak için */
+    margin-bottom: 20px;
+}
+
+.navbar-nav {
+    margin: 0;
+}
+
+.navbar-nav .nav-item {
+    float: left;
+}
+
+.navbar-nav .nav-item a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-item a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.navbar-custom {
+    background-color: #343a40;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color: #f2f2f2;
+}
+
+.navbar-custom .navbar-nav > li > a:hover {
+    background-color: #23272b;
+    color: #ffffff;
+}
+
+/* Gizli butonlar için stil */
+#birimButton,
+#firmaButton,
+#veriButton {
+    display: none;
+}
+
+.multiselect-container {
+    position: relative; /* Konteynerin yerleşimini kontrol eder */
+}
+.multiselect-dropdown {
+    position: absolute; /* Konumlandırma */
+    z-index: 1000; /* Diğer elemanların üstünde */
+    background-color: #fff; /* Arka plan rengi */
+    border: 1px solid #ddd; /* Kenar çizgisi */
+    padding: 10px; /* İç boşluk */
+    max-height: 200px; /* Maksimum yükseklik */
+    overflow-y: auto; /* Dikey kaydırma */
+    width: 100%; /* Genişlik */
+    box-sizing: border-box; /* Padding ve border, genişliğe dahil edilir */
+}
+/* Genel stil ayarları */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* contenteditable div stil ayarları */
+.editable {
+    border: 1px solid #ddd; /* Hücre kenar çizgisi */
+    padding: 5px; /* İç boşluk */
+    min-height: 30px; /* Minimum yükseklik */
+    box-sizing: border-box; /* Padding ve border genişliğe dahil edilir */
+    overflow: auto; /* Taşan içeriğin kaydırılması */
+    background-color: #fff; /* Arka plan rengi */
+}
+
+/* Select elementleri için stil */
+select {
+    width: 100%; /* Genişlik */
+    padding: 8px; /* İç boşluk */
+    box-sizing: border-box; /* Padding ve border genişliğe dahil edilir */
+    border: 1px solid #ddd; /* Kenar çizgisi */
+    border-radius: 4px; /* Köşe yuvarlatma */
+    background-color: #fff; /* Arka plan rengi */
+}
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-right {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px; /* Butonları biraz aşağı kaydırır */
+}
+
+/* CSS */
+.button-81 {
+  background-color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 1.5rem;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Basier circle",-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: #1e293b;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+}
+
+/* Birim ve Firma tablolarını biraz aşağı kaydırmak için */
+#birimTableContainer,
+#firmaTableContainer {
+    margin-top: 50px; /* Üstten 20px boşluk ekler */
+}
+
+/* Veri tablosunu biraz daha aşağı kaydırmak için */
+/* Birim ve Firma tablolarını biraz aşağı kaydırmak için */
+
+#firmaTableContainer {
+    margin-top: 100px; /* Üstten 20px boşluk ekler */
+}
+
+/* Veri tablosunu biraz daha aşağı kaydırmak için */
+#veriTableContainer {
+    margin-top: 100px; /* Üstten 20px boşluk ekler */
+}
+
+/* Birim ve Firma tablolarını biraz aşağı kaydırmak için */
+#birimTableContainer
+ {
+    margin-top: 100px; /* Üstten 20px boşluk ekler */
+}
+/* Tablo köşelerini yuvarlat */
+.table-container table {
+    border-radius: 8px; /* İstediğiniz köşe yuvarlatma miktarını ayarlayın */
+    overflow: hidden; /* Yuvarlatılmış köşelerin düzgün görünmesi için */
+}
+/* Kaydırılabilir dropdown menüsü için stiller */
+.dropdown-scroll {
+    max-height: 150px; /* Maksimum yükseklik */
+    overflow-y: auto; /* Dikey kaydırma */
+    padding: 5px; /* İç boşluk */
+    border: 1px solid #ddd; /* Kenar çizgisi */
+    border-radius: 4px; /* Köşe yuvarlatma */
+    background-color: #fff; /* Arka plan rengi */
+}
+/* Bootstrap-Multiselect ile uyumlu dropdown menüsü için stil */
+.multiselect-container {
+    max-height: 150px; /* Maksimum yükseklik */
+    overflow-y: auto; /* Dikey kaydırma */
+    padding: 5px; /* İç boşluk */
+    border: 1px solid #ddd; /* Kenar çizgisi */
+    border-radius: 4px; /* Köşe yuvarlatma */
+    background-color: #fff; /* Arka plan rengi */
+}
+

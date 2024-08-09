@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Veri Tablosu</title>
+    <link href="https://unpkg.com/bootstrap@3.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://unpkg.com/bootstrap-multiselect@0.9.13/dist/css/bootstrap-multiselect.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/> <!-- Dış CSS dosyası -->
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@3.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-multiselect@0.9.13/dist/js/bootstrap-multiselect.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-custom">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="#" id="showBirim">Birim Girişi</a></li>
+            <li class="nav-item"><a href="#" id="showFirma">Firma Girişi</a></li>
+            <li class="nav-item"><a href="#" id="showVeri">Veri Giriş</a></li>
+        </ul>
+        <ul class="navbar-nav navbar-right"> <!-- Butonları sağa hizalamak için -->
+            <li class="nav-item">
+              
+
+            </li>
+            <li class="nav-item">
+                <button id="exportButton" class="button-81">Export</button>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="menu">
+            <button id="birimButton" class="button-80 button-dark btn-lg">Birim Girişi</button>
+            <button id="firmaButton" class="button-80 button-dark btn-lg">Firma Girişi</button>
+            <button id="veriButton" class="button-80 button-dark btn-lg">Veri Giriş</button>
+        </div>
+        
+        <div class="table-container">
+            <div id="birimTableContainer">
+                <table id="birimTable" class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="3">Birim Tablosu</th>
+                        </tr>
+                        <tr>
+                            <th>Sıra No</th>
+                            <th>Birim Adı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myBirimTable">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                <div id="veriDepartmanContainer"></div>
+                            </td>
+                            <td colspan="2">
+                                <button id="birimAddButton" class="button-80 button-dark">Birim Ekle</button>
+                                <form id="birimForm" class="entryForm" style="display:none;">
+                                    <label for="birimAd">Birim Adı:</label>
+                                    <input type="text" id="birimAd" name="birimAd" required>
+                                    <button type="submit" class="button-80 button-dark">Ekle</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div id="firmaTableContainer" style="display:none;">
+                <table id="firmaTable" class="table table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="3">Firma Tablosu</th>
+                        </tr>
+                        <tr>
+                            <th>Sıra No</th>
+                            <th>Firma Adı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myFirmaTable">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td colspan="2">
+                                <button id="firmaAddButton" class="button-80 button-dark">Firma Ekle</button>
+                                <form id="firmaForm" class="entryForm" style="display:none;">
+                                    <label for="firmaAd">Firma Adı:</label>
+                                    <input type="text" id="firmaAd" name="firmaAd" required>
+                                    <button type="submit" class="button-80 button-dark">Ekle</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+   <div id="veriTableContainer" class="table-container" style="display:none;">
+    <table id="myVeriTable" class="table table-bordered">
+        <thead class="thead-dark">
+            <th colspan="15">Veri Tablosu</th>
+            <tr>
+                <th>Uygulamalar</th>
+                <th>Birimler</th>
+                <th>Firma Adı</th>
+                <th>Firma Kontakt (İsim/Soyisim)</th>
+                <th>Firma Kontakt Mail</th>
+                <th>Firma Telefon</th>
+                <th>Firma Sorumlusu</th>
+                <th>Sorumlu Mail</th>
+                <th>Sorumlu Cep No</th>
+                <th>Ay/Yıl Ödeme Bilgisi</th>
+                <th>Tutar /TL,$</th>
+                <th>Lisans Baş. Tarih</th>
+                <th>Lisans Bit. Tarih</th>
+                <th>AÇIKLAMA</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <!-- Veri verileri buraya eklenir -->
+        </tbody>
+        
+        <tfoot>
+            <tr>
+                <td><div contenteditable="true" class="editable" placeholder="Sözleşme Uygulamalar Adı"></div></td>
+                <td>
+                    <select id="veriDepartman" multiple class="dropdown-scroll">
+                        <!-- Seçenekler JavaScript ile eklenecek -->
+                    </select>
+                </td>
+                <td>
+                    <select id="veriFirmaAd" class="dropdown-scroll">
+                        <option value=" ">Seçim Yok</option>
+                        <!-- Firma adları buraya dinamik olarak eklenecek -->
+                    </select>
+                </td>
+                <td><div contenteditable="true" class="editable" placeholder="Firma Kontakt"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Firma Kontakt Mail"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Firma Telefon"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Firma Sorumlusu"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Firma Sorumlu Mail"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Firma Sorumlu Cep No"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Ödeme Bilgisi"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Tutar"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Başlangıç Tarih"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Bitiş Tarih"></div></td>
+                <td><div contenteditable="true" class="editable" placeholder="Açıklama"></div></td>
+                <td>
+                    <button id="veriEkleButton" class="button-80 button-dark">Veri Ekle</button>
+                    <button id="veriEditButton" style="display:none;" class="button-80 button-dark">Düzenle</button>
+                    <button id="veriDeleteButton" style="display:none;" class="button-80 button-dark">Sil</button>
+                    <button id="veriSaveButton" style="display:none;" class="button-80 button-dark">Kaydet</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
+
